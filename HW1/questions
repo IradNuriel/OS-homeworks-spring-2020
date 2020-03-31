@@ -16,3 +16,4 @@ m. echo
 n. sleep
 
 If the last parameter of a command is "&" , the command should run in the background, otherwise it should run in the foreground. 
+When the user will type "exit", the program will finish.
