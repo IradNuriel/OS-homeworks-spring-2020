@@ -1,0 +1,18 @@
+Create simple shell for linux usig processes fork(),wait(),execvp() and exit().
+Your solution need to support the following commands(as well as their optional parameters):
+a. ls
+b. pwd 
+c. date 
+d. cal 
+e. cp
+f. mkdir 
+g. rmdir 
+h. rm 
+i. cat 
+j. mv 
+k. ps 
+l. touch
+m. echo
+n. sleep
+
+If the last parameter of a command is "&" , the command should run in the background, otherwise it should run in the foreground. 
