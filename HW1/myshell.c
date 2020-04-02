@@ -11,19 +11,28 @@ int main(void) {
 	close(2);
 	dup(1);
 	char command[BUFFER_SIZE];
-	char *argv[10];
+	char **argv;
 	char *cmd;
-	int i;
+	int i,c,cnt;
 	while (1) {
 		i = 0;
+		cnt = 1;
 		fprintf(stdout, "my-shell> ");
 		memset(command, 0, BUFFER_SIZE);
 		fgets(command, BUFFER_SIZE, stdin);
         if(strncmp(command, "exit", 4) == 0){ //exit command
 			break;
 		}
-		
-		
+		for (j = 0; j < strlen(command); j++) {
+			if (commant[j] == ' ') {
+				cnt++;
+			}
+		}
+		cnt++;
+		argv = (char**)malloc(cnt * sizeof(char*));
+		if (argv == NULL) {
+			fprintf(stdout,"ERROR! failed to allocate memory");
+		}
 		argv[i] = strtok(command, " \n");
 		while (argv[i] != NULL){//extracting parameters from command
 			i++;
@@ -59,7 +68,7 @@ int main(void) {
 				waitpid(pid,&value,0);//waiting to child process to finish
 			}
 		}
-
+		free(argv);
 
 
 	}
