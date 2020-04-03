@@ -13,18 +13,21 @@ int main(void) {
 	char command[BUFFER_SIZE];
 	char **argv;
 	char *cmd;
-	int i,c,cnt;
+	int i,j,cnt;
 	while (1) {
 		i = 0;
 		cnt = 1;
 		fprintf(stdout, "my-shell> ");
 		memset(command, 0, BUFFER_SIZE);
 		fgets(command, BUFFER_SIZE, stdin);
-        if(strncmp(command, "exit", 4) == 0){ //exit command
+		if (command[0]=='\n') {
+			continue;
+		}
+		if(strncmp(command, "exit", 4) == 0){ //exit command
 			break;
 		}
 		for (j = 0; j < strlen(command); j++) {
-			if (commant[j] == ' ') {
+			if (command[j] == ' ') {
 				cnt++;
 			}
 		}
