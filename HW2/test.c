@@ -98,6 +98,8 @@ int execute_command(char* command, int value) {
 			pthread_join(threads[i], NULL);
 		}
 		thread_count = 0;
+	}else if(strcmp(command,"print_thread_count")==0){
+		printf("%d\n",thread_count);
 	}
 	else {
 		printf("unknown command\n");
