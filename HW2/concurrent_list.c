@@ -88,20 +88,18 @@ void delete_list(list* list) {//function delete_list
 	//get head->next 
 	pthread_mutex_lock(&(head->mut));
 	node* next = head->next;
-	pthread_mutex_unlock(&(head->mut));
 	while (head->next) {//while there is next to the list
-		//lock both head & head->next mutexes
-		pthread_mutex_lock(&(head->mut));
+		//lock both head->next mutexes
 		pthread_mutex_lock(&(head->next->mut));
 		next = head->next;//set the "next" variable as head->next
-		//unlock both head & head->next mutexes
-		pthread_mutex_unlock(&(next->mut));
+		//unlock head mutex
 		pthread_mutex_unlock(&(head->mut));
 		//delete the list current head
 		delete_node(head);
 		//set head to its next
 		head = next;
 	}
+	pthread_mutex_unlock(&(head->mut));
 	delete_node(head);//delete the last node on the list
 	pthread_mutex_destroy(&(list->mut));//destroy the list mutex and free it
 	free(list);
