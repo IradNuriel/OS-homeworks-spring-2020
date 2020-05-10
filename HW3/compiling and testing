@@ -1,0 +1,45 @@
+COMPILING:
+You need to make sure that all the files in this directory are in the same directory.
+then, first unload the device driver using ./unload(unload is a shell script that unload the device driver from the system)
+then, compile the solution using make(there is a Makefile that will give instructions to gcc).
+and then, reload the device driver using ./load memory_size=50(load is a shell script that load the device driver to the system)
+
+
+TESTING:
+To test the device driver, run ./test(binary file that will check that the device driver is working).
+when running test, you'll have few test instructions to work with:
+1)open #device_id #reference_id #flags:
+this instruction will call open for the device. here is description:
+i)#device_id can be the value 0 or 1, for 0, the device will be open under the adress "/dev/encdec0", and for 1,the device driver will be open under the adress "/dev/encdec1".
+ii)#reference_id is the number that associated to the real file descriptor that got as a result to the function open.
+iii)#flags can be one of the values: "read","write" or "read|write".
+
+2)write #reference_id "#string":
+this instruction will call write to the device. here is the description:
+i)#reference_id is the number that associated to the real file descriptor that we will write into.
+ii)#string is the string that we want to write to the device(to encrypt it)
+
+3)read #reference_id #count:
+this instruction call read frim the device. here is the description:
+i)#reference_id is the number that associated to the real file descriptor that  we will read from.
+ii)#count is the number of characters that we want to read
+
+4)lseek #reference_id #pos
+this insruction make the process call lseek to move the seek pointer of the file descriptor that associated with the given reference_id. here is the description:
+i)#reference_id is the number that associated to the real file descriptor that we will execute lseek on.
+ii)#pos is the new position of the seek pointer.
+
+5)ioctl #reference_id #cmd #arg:
+this instruction will call ioctl for the file descriptor that associated with the given reference_id. here is the description:
+i)#reference_id is the number that associated to the real file descriptor that we will execute ioctl for.
+ii)#cmd is the instruction we want to do, can be "zero","change_read_state" of "change_key"
+iii)#arg is the instuction argument that we want to give, must given if:
+a)if #cmd=change_key, #arg will be the new encryption key
+b)if #cmd=change_read_state, #arg will contains the value decrypt or raw
+
+6)close #reference_id:
+this instruction will call close to the file descriptor that associated with the given reference_id.
+i)#reference_id is the number that associated to the real file descriptor that we will execute close on.
+
+7)exit:
+finish the run of the program.
