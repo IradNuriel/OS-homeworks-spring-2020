@@ -43,3 +43,10 @@ i)#reference_id is the number that associated to the real file descriptor that w
 
 7)exit:
 finish the run of the program.
+
+
+There are 7 dedicated test2 input file that you can test by: 
+./test < test#test_number_here.in > mytest#test_number_here.out
+and then:
+diff test#test_number_here.out mytest#test_number_here.out
+and if there is no output from diff, your code is running correctly
