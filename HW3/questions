@@ -1,0 +1,23 @@
+In this Exercise we will implement a device driver for encryption device using kernel module.
+we will simulate two different encryption devices:(we will not implement a real hardware encryption device, we will only simulate it).
+one for caeser cipher, and one for XOR cipher.
+
+in the exercise we will implement a devece driver that will support two types of character devices, device from type Caeser Cipher, and device from type XOR cipher.
+for each type of the device types,  the device driver will manage a Data Buffer that the end user will write into to encrypt strings and read from to decrypt the encrypted data.
+
+In addition to the ability to read and write from the device, we will want that both of the devices will give the ability to do the next spacial instructions:
+1)Encryption Key:
+we need to let the user define the encryption key that the user will use when writing to the device to encrypt, and when the user will encrypted read data from the device to decrypt it.
+pay attention, this attribute needs to be difined in the file object that describe the work context of the user with the device.
+for example, if we opened the same device using two different calls to open(and each one of them returned to us a different file descriptor)
+so we need to enable separated encryption key for each one of the file objects that represented by the file descriptors.
+2)Read State:
+we need to let the user to define if, when he reading from the device, if he wants to read the raw encrypted data, or he wants to read the decrypted data.
+pay attention that this attribute needs to be defined in the file object that describe the work context of the user with the device as well.
+3)Zero buffer:
+we need to let the user ask to zero the data buffer of the device.
+
+
+So, you need to write a Kernel Module that will write a new device driver with dynamic Major number, 
+and implement two File Operations Sets, one for Caesar Cipher that will be defined with Minor 0, 
+and one for XOR Cipher that will be defined with Minor 1. 
