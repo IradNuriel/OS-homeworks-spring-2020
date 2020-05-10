@@ -290,7 +290,3 @@ ssize_t encdec_write_xor(struct file *filp, const char *buf, size_t count, loff_
 	}
 }
 
-
-
-// Add implementations for:
-// ------------------------
