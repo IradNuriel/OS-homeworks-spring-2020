@@ -1,0 +1,14 @@
+open 0 0 read|write
+ioctl 0 zero
+ioctl 0 change_key 0
+ioctl 0 change_read_state decrypt
+write 0 "abcdefghij"
+write 0 "abcdefghij"
+write 0 "abcdefghij"
+write 0 "abcdefghij"
+write 0 "abcdefghij"
+write 0 "1"
+lseek 0 0
+write 0 "2"
+close 0
+exit

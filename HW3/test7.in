@@ -1,0 +1,9 @@
+open 0 0 read|write
+ioctl 0 zero
+ioctl 0 change_key 125
+ioctl 0 change_read_state raw
+write 0 "0123456789"
+lseek 0 2
+read 0 4
+close 0
+exit

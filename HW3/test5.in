@@ -1,0 +1,16 @@
+open 1 0 read|write
+ioctl 0 zero
+ioctl 0 change_key 9
+ioctl 0 change_read_state raw
+write 0 "The quick brown fox jumps over the lazy dog"
+lseek 0 0
+read 0 25
+open 1 1 read|write
+ioctl 1 change_key 8
+ioctl 1 change_read_state decrypt
+read 1 25
+ioctl 1 change_key 9
+lseek 1 0
+read 1 25
+close 0
+exit

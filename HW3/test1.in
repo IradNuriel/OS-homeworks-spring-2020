@@ -1,0 +1,9 @@
+open 0 0 read|write
+ioctl 0 zero
+ioctl 0 change_key 4
+ioctl 0 change_read_state raw
+write 0 "The quick brown fox jumps over the lazy dog"
+open 0 1 read|write
+read 1 25
+close 0
+exit

@@ -1,0 +1,17 @@
+open 0 0 read|write
+open 0 1 read|write
+ioctl 0 zero
+ioctl 1 zero
+write 0 "Hello World"
+write 1 "   Hi "
+read 1 5
+lseek 0 0
+read 0 11
+ioctl 0 zero
+lseek 0 0
+lseek 1 0
+read 0 5
+read 1 5
+close 0
+close 1
+exit
