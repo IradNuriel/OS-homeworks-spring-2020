@@ -17,7 +17,7 @@
 #define MODULE_NAME "encdec"
 
 MODULE_LICENSE("GPL");
-MODULE_AUTHOR("YOUR NAME");
+MODULE_AUTHOR("IRAD NURIEL");
 
 int 	encdec_open(struct inode *inode, struct file *filp);
 int 	encdec_release(struct inode *inode, struct file *filp);
